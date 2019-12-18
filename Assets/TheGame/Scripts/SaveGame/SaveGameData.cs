@@ -8,7 +8,7 @@ public class SaveGameData
 
         public static SaveGameData currentSave = loadOrNewSave();
         public Inventory inventory = new Inventory();
-        //public Health health = new Health();
+        public Health health = new Health();
         public string savepoint = ""; //last savepoint
         public List<string> deletedObjects = new List<string>(); //list of ID of the deleted items for savegame
 

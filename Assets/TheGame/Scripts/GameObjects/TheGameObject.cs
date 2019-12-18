@@ -8,12 +8,11 @@ public class TheGameObject : MonoBehaviour
     public float speed = 1f;
     protected BoxCollider2D boxCollider;
     protected Collider2D[] colliders;
-    protected Animator anim;
     protected ContactFilter2D obstacleFilter; //Hindernis
     protected int numFound = 0; //Collision Objects Found
 
     private static float pixelFrac = 1f / 32f;  //16 Pixel / per Unit
-    private Animator animator; 
+    protected Animator animator; 
 
     protected virtual void Awake()
     {

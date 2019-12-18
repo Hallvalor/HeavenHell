@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 public class DialogUI : MonoBehaviour
 {
-    //public GameObject gameOverDialog;
+    public GameObject gameOverDialog;
     public GameObject savedInfo;
     public GameObject pauseInfo;
     public GameObject darkness;
@@ -15,7 +15,7 @@ public class DialogUI : MonoBehaviour
 
      protected void Awake()  //Start -> all deactivated
     {
-       // gameOverDialog.SetActive(false);
+        gameOverDialog.SetActive(false);
         savedInfo.SetActive(false);
         pauseInfo.SetActive(false);
         darkness.SetActive(false);

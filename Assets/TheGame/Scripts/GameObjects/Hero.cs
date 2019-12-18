@@ -29,7 +29,22 @@ public class Hero : TheGameObject
             }
         }
 
+        if (SaveGameData.currentSave.health.currentHealth == 0)
+        {
+            animator.SetTrigger("die");
+            animator.updateMode = AnimatorUpdateMode.UnscaledTime;  //ignore timesScale = 0f, animation continues
+            GetComponent<HeroInputController>().enabled = false;
 
+            Time.timeScale = 0f;  //"pause" game
+            AudioListener.pause = true;
+        }
+
+    }
+
+    public void onDeathAnimationComplete()
+    {
+        DialogUI dui = FindObjectOfType<DialogUI>();
+        dui.gameOverDialog.SetActive(true);
     }
 
     public override void flicker(int times)
