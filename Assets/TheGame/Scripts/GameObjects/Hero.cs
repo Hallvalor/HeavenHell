@@ -22,7 +22,7 @@ public class Hero : TheGameObject
             Collider2D collider = colliders[i];
             if (collider.isTrigger)
             {
-                foreach (Collectible collectible in collider.GetComponents<Collectible>())
+                foreach (Collectable collectible in collider.GetComponents<Collectable>())
                 {
                     collectible.OnCollect();
                 }
@@ -31,6 +31,14 @@ public class Hero : TheGameObject
 
 
     }
+
+    public override void flicker(int times)
+    {
+       // hitSound.Play();
+        base.flicker(times);
+    }
+
+
     [System.Serializable]
     public class SpriteSet
     {
@@ -54,5 +62,8 @@ public class Hero : TheGameObject
             }
 
         }
+
+
+      
     }
 }
