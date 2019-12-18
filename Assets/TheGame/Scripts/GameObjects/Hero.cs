@@ -4,15 +4,33 @@ using UnityEngine;
 
 public class Hero : TheGameObject
 {
-
+    private ContactFilter2D triggerContactFilter;
 
     protected override void Awake()
     {
         base.Awake();
-
+        triggerContactFilter = new ContactFilter2D();
+        triggerContactFilter.useTriggers = true;  //notices trigger
     }
 
+    private void Update()
+    {
+        Physics2D.SyncTransforms();
+        int found = boxCollider.OverlapCollider(triggerContactFilter, colliders);
+        for (int i = 0; i < found; i++)
+        {
+            Collider2D collider = colliders[i];
+            if (collider.isTrigger)
+            {
+                foreach (Collectible collectible in collider.GetComponents<Collectible>())
+                {
+                    collectible.OnCollect();
+                }
+            }
+        }
 
+
+    }
     [System.Serializable]
     public class SpriteSet
     {
