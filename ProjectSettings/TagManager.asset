@@ -44,6 +44,9 @@ TagManager:
   - name: Ground
     uniqueID: 3683879561
     locked: 0
+  - name: GroundHouse
+    uniqueID: 2407814237
+    locked: 0
   - name: GroundDeco
     uniqueID: 888840255
     locked: 0
@@ -58,4 +61,7 @@ TagManager:
     locked: 0
   - name: TreeLeaf(Foreground)
     uniqueID: 2690713375
+    locked: 0
+  - name: UI
+    uniqueID: 787989545
     locked: 0
