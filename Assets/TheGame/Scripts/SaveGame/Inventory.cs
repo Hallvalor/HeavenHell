@@ -7,6 +7,8 @@ using UnityEngine;
 public class Inventory
 {
     public int gems = 0;
+
+    public bool weapon = false;  //equipped sword? 
 }
 
 

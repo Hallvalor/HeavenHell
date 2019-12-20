@@ -5,6 +5,10 @@ using UnityEngine;
 public class Hero : TheGameObject
 {
     private ContactFilter2D triggerContactFilter;
+    public DialogueManager dialogueManager; 
+
+    public RuntimeAnimatorController emptySkin;  //skin without shield etc
+    public SpriteSet emptyActionSkin;
 
     protected override void Awake()
     {
@@ -26,8 +30,19 @@ public class Hero : TheGameObject
                 {
                     collectible.OnCollect();
                 }
+
+                if (collider.tag == "DialogueZone" && Input.GetKeyDown(KeyCode.Space))
+                {
+                    dialogueManager.ShowBox(collider.GetComponentInParent<DialogueNPC>());
+                }
+
             }
+
+
+
         }
+
+
 
         if (SaveGameData.currentSave.health.currentHealth == 0)
         {
@@ -41,19 +56,56 @@ public class Hero : TheGameObject
 
     }
 
+    //Death
     public void onDeathAnimationComplete()
     {
         DialogUI dui = FindObjectOfType<DialogUI>();
         dui.gameOverDialog.SetActive(true);
     }
 
+    ////StartDialog / Action
+    //public void StartDialog()
+    //{
+    //    float  test; 
+    //    test  =  animator.GetFloat("lookAt");
+    //    Debug.Log("LookAt : " + test);
+
+
+    //}
+
+
+
+
+    //Stroke and use correct skin
+    public void performAction()
+    {
+        if (!SaveGameData.currentSave.inventory.weapon) return;  //no sword - no hit
+        animator.enabled = false;
+
+        AnimationEventDelegate.whenTimelineEventReached += resetSkin;
+
+       // if (SaveGameData.currentSave.inventory.shield) shieldActionSkin.apply(GetComponent<SpriteRenderer>(), Mathf.RoundToInt(anim.GetFloat("lookAt")));
+        emptyActionSkin.apply(GetComponent<SpriteRenderer>(), Mathf.RoundToInt(animator.GetFloat("lookAt")));
+//
+        Weapon weapon = GetComponentInChildren<Weapon>();
+        weapon.stroke();
+    }
+
+    private void resetSkin()
+    {
+        animator.enabled = true;
+        AnimationEventDelegate.whenTimelineEventReached -= resetSkin;
+    }
+
+
+    //flicker if e.g. get hit
     public override void flicker(int times)
     {
        // hitSound.Play();
         base.flicker(times);
     }
 
-
+    //for custom sprite-set (empty skin, shieldskin, perhaps angel-skin?) 
     [System.Serializable]
     public class SpriteSet
     {
@@ -77,8 +129,5 @@ public class Hero : TheGameObject
             }
 
         }
-
-
-      
     }
 }

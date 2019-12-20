@@ -20,5 +20,16 @@ public class HeroInputController : MonoBehaviour
             hero.change.y = 1;
         else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
             hero.change.y = -1;
+
+       else  if (Input.GetKeyUp(KeyCode.E))
+        {
+            hero.performAction();
+        }
+
+        //else if (Input.GetKeyUp(KeyCode.F))
+        //{
+        //    hero.StartDialog(); 
+        //}
+
     }
 }

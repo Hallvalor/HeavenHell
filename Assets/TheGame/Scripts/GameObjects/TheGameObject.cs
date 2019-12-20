@@ -19,7 +19,6 @@ public class TheGameObject : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         colliders = new Collider2D[10];
         obstacleFilter = new ContactFilter2D();
-
         animator = GetComponent<Animator>();
     }
 
