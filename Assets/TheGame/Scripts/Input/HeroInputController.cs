@@ -8,6 +8,9 @@ public class HeroInputController : MonoBehaviour
 
     void Update()
     {
+        if (Time.timeScale < 1f) return; //if pause -> no actions
+
+
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             hero.change.x = 1;
         else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DemonCrystal : Collectable
-{ 
-    void Start()
+{
+    public void Start()
     {
-        
+        SaveGameData.currentSave.recoverDestroy(gameObject); //if GameObject is destroyed -> destroy on save
     }
 
     public override void OnCollect()
